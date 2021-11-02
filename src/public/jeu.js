@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', async (req, res) => {
             session = reponseUser;
             
             if (window.location.pathname.startsWith("/hub")) {
-                const interval = 15;
-                const validTime = [0, 15, 30, 45];
+                const interval = 5;
+                const validTime = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
             
                 let next_time = DateTime.now();
                 let check = validTime.find(t => t >= next_time.second);
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', async (req, res) => {
                 setTimeout(async () => {
                     setInterval(async () => {
             
-                        console.log("LETS GOOOOOO");
+                        console.log("refresh");
                         await refreshGames();
                         await recupUserCombo();
             
@@ -71,10 +71,10 @@ document.addEventListener('DOMContentLoaded', async (req, res) => {
                                 let item = document.getElementById(game._id);
                                 if (game.createur == MaSession.userid){
                                     item.innerHTML = " Nom de la partie: " + game.nomPartie + "<br> Joueur 1: " + game.joueur_un.nomJoueur1 + "<br> Joueur 2 : " + game.joueur_deux.nomJoueur2 + "<br> Etat : " + game.statue +"<br><form action='/deleteGame/"+game._id+"' method='get'><button class='btn btn-primary btn-sm' type='submit'>Supprimer</button></form> "
-                                    +"<br> <form action='/versGames/"+game._id+"' method='get'><button class='btn btn-primary btn-sm' type='submit'" + game._id +"'>Rejoindre</button></form>";
+                                    +"<br> <a href='/versGames/"+game._id+"'><button class='btn btn-primary btn-sm' type='submit'" + game._id +"'>Rejoindre</button></a>";
                                 }else{
                                     item.innerHTML = " Nom de la partie: " + game.nomPartie + "<br> Joueur 1: " + game.joueur_un.nomJoueur1 + "<br> Joueur 2 : " + game.joueur_deux.nomJoueur2 + "<br> Etat : " + game.statue 
-                                    +"<br> <form action='/versGames/"+game._id+"' method='get'><button class='btn btn-primary btn-sm' type='submit'" + game._id +"'>Rejoindre</button></form>";    
+                                    +"<br> <a href='/versGames/"+game._id+"'><button class='btn btn-primary btn-sm' type='submit'" + game._id +"'>Rejoindre</button></a>";    
                                 }
                                 
             
@@ -85,11 +85,11 @@ document.addEventListener('DOMContentLoaded', async (req, res) => {
                                 li.id = game._id
                                 if (game.createur==MaSession.userid){
                                     li.innerHTML = " Nom de la partie: " + game.nomPartie + "<br> Joueur 1: " + game.joueur_un.nomJoueur1 + "<br> Joueur 2 : " + game.joueur_deux.nomJoueur2   + "<br> Etat : " + game.statue+ "<br><form action='/deleteGame/"+game._id+"' method='get'><button class='btn btn-primary btn-sm' type='submit'>Supprimer</button></form> "
-                                +"<br> <form action='/versGames/"+game._id+"' method='get'><button class='btn btn-primary btn-sm' type='submit'" + game._id +"'>Rejoindre</button></form>";
+                                +"<br> <a href='/versGames/"+game._id+"' method='get'><button class='btn btn-primary btn-sm' type='submit'" + game._id +"'>Rejoindre</button></a>";
                                 liste.appendChild(li);
                                 }else{
                                     li.innerHTML = " Nom de la partie: " + game.nomPartie + "<br> Joueur 1: " + game.joueur_un.nomJoueur1 + "<br> Joueur 2 : " + game.joueur_deux.nomJoueur2   + "<br> Etat : " + game.statue 
-                                +"<br> <form action='/versGames/"+game._id+"' method='get'><button class='btn btn-primary btn-sm' type='submit'" + game._id +"'>Rejoindre</button></form>";
+                                +"<br> <a href='/versGames/"+game._id+"' method='get'><button class='btn btn-primary btn-sm' type='submit'" + game._id +"'>Rejoindre</button></a>";
                                 liste.appendChild(li);
                                 }
                                 
@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', async (req, res) => {
                 await fetch("/recupUsers").then(reponse => reponse.json())
                     .then(async data => {
                         data.forEach(async users => {
-                            console.log(users);
+                            //console.log(users);
             
                             await actualItems.splice(actualItems.indexOf(users._id), 1); // retire l'élément de la liste
             

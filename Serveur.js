@@ -116,26 +116,6 @@ async function createGame(GameName, j1, j2, gameAuthor) {
 }
 
 
-async function MiserJ1(mise){
-    const miseJeton = new GameList({
-        joueur_un: {
-            mise: mise
-        }
-    })
-    const result = await miseJeton.save();
-    console.log(result);
-}
-async function MiserJ2(mise){
-    const miseJeton = new GameList({
-        joueur_deux: {
-            mise: mise
-        }
-    })
-    const result = await miseJeton.save();
-    console.log(result);
-}
-
-//défini le dossier ou chercher le index.html
 
 
 
@@ -146,6 +126,7 @@ app.get('/', (req, res) => {
     } else
         res.render('Index.ejs')
 });
+
 
 app.post('/user/login', async (req, res) => {
     await Users.findOne({
@@ -280,15 +261,7 @@ app.get("/recupInfoJ", async (req, res) => {
 })
 
 
-app.post("/MiseJ1", async (req, res) => {
-    MiserJ1(req.body.MiseJ1);
-    location.reload()
-})
 
-app.post("/MiseJ2", async (req,res) =>{
-    MiserJ2(req.body.MiseJ2);
-    location.reload()
-})
 
 app.get('/session', (req, res) => {
 
