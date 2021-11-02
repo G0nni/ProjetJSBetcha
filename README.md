@@ -65,7 +65,7 @@ le créateur de la partie peut supprimer cette partie : 1 point			FAIT<br><br>
 on ne peut pas supprimer une partie dont on est pas le créateur : 1 point	FAIT<br><br>
 
 On voit 11 emplacements contigus : 2 points					FAIT<br><br>
-On voit le nom et nombre de jetons des joueurs : 1 point<br><br>
+On voit le nom et nombre de jetons des joueurs : 1 point          FAIT<br><br>
 On peut miser : 3 points<br><br>
 un pari est généré automatiquement après 30 secondes (entre 0 et le nombre de jetons du joueur) : 1 point<br><br>
 la partie sera mise à jour sans intervention de l'utilisateur : 3 points<br><br>
