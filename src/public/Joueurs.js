@@ -55,12 +55,12 @@ async function RefreshGamesInfoJ1() {
 
                 if (document.getElementById(users._id)) {
                     let item = document.getElementById(users._id);
-                    item.innerHTML = " Nom j1: " + users..joueur_un.nomJoueur1 + "<br> jetons : " + users.joueur_deux.jetons;
+                    item.innerHTML = " Nom j1: " + users.joueur_un.nomJoueur1 + "<br> jetons : " + users.joueur_deux.jetons;
                 }
                 else {
                     let li = document.createElement("li");
                     li.id = users._id
-                    li.innerHTML = " Nom j1: " + users..joueur_un.nomJoueur1 + "<br> jetons : " + users.joueur_deux.jetons;
+                    li.innerHTML = " Nom j1: " + users.joueur_un.nomJoueur1 + "<br> jetons : " + users.joueur_deux.jetons;
                     liste.appendChild(li);
                 }
 

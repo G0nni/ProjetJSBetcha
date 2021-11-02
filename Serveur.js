@@ -63,11 +63,13 @@ const ListeParties = mongoose.Schema({
     joueur_un: {
         nomJoueur1: { type: String, required: true },
         jetons: { type: Number, default: 100 },
+        mise: {type: Number, required: true, default: 0, min: 0, max:100},
         isConnected: { type: Boolean, required: true, default: false },
     },
     joueur_deux: {
         nomJoueur2: { type: String, required: true },
         jetons: { type: Number, default: 100 },
+        mise: {type: Number, required: true, default: 0, min: 0, max:100},
         isConnected: { type: Boolean, required: true, default: false },
     },
     round: { type: Number, required: true, default: 1 },
@@ -114,7 +116,24 @@ async function createGame(GameName, j1, j2, gameAuthor) {
 }
 
 
-
+async function MiserJ1(mise){
+    const miseJeton = new GameList({
+        joueur_un: {
+            mise: mise
+        }
+    })
+    const result = await miseJeton.save();
+    console.log(result);
+}
+async function MiserJ2(mise){
+    const miseJeton = new GameList({
+        joueur_deux: {
+            mise: mise
+        }
+    })
+    const result = await miseJeton.save();
+    console.log(result);
+}
 
 //défini le dossier ou chercher le index.html
 
@@ -219,11 +238,25 @@ app.get("/recupGames", async (req, res) => {
 
 })
 
-const getRedirect = (req, res) => {
-    res.render('Jeu.ejs')
-}
 
-app.get('/versGames/:id', getRedirect);
+
+app.get('/versGames/:id', async (req, res) => {
+    if (!req.session.user) return res.redirect('/hub');
+    let game = await GameList.findById(req.params.id)
+    if (!game) return res.redirect("/hub");
+    
+    let user1 = await Users.findOne({"username":game.joueur_un.nomJoueur1});
+    let user2 = await Users.findOne({"username":game.joueur_deux.nomJoueur2});
+
+    let type = null;
+
+    if (user1.id == req.session.user.id || user2.id == req.session.user.id) {
+        type = true;
+    } else {
+        type = false;
+    }
+    res.render('Jeu.ejs', {game: game, user1: user1, user2: user2, isplayer: type})
+});
 
 
 
@@ -247,7 +280,15 @@ app.get("/recupInfoJ", async (req, res) => {
 })
 
 
+app.post("/MiseJ1", async (req, res) => {
+    MiserJ1(req.body.MiseJ1);
+    location.reload()
+})
 
+app.post("/MiseJ2", async (req,res) =>{
+    MiserJ2(req.body.MiseJ2);
+    location.reload()
+})
 
 app.get('/session', (req, res) => {
 

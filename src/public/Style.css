@@ -327,3 +327,16 @@ form .pied-formulaire button:hover {
   border-radius: 10px;
   cursor: pointer;
 }
+
+
+.la_miseJ1 {
+  position: absolute; 
+  left: 400px;
+  top: 500px;
+}
+
+.la_miseJ2 {
+  position: absolute; 
+  left: 1000px;
+  top: 500px;
+}
