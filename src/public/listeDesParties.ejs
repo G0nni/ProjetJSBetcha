@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>liste des parties</title>
+
+    <link rel="stylesheet" href="Style.css">
+
+
+    <script src="https://moment.github.io/luxon/global/luxon.min.js"></script>
+
+
+
+</head>
+
+<body>
+    <header class="main-head">
+        <nav>
+            <h1 id="logo">Betcha - Le jeu officiel</h1>
+            <ul class="head-ul">
+                <li><button class="button1" onclick="location.href='/logout';">Se déconnecter</button></li>
+                <li><button class="button1" id="show-login">Création de parties</button></li>
+                <li>
+                    <div class="theme-switch-wrapper">
+                        <label for="checkbox" class="theme-switch">
+                            <input type="checkbox" id="checkbox">
+                            <div class="slider round"></div>
+                        </label>
+                        <em></em>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <section>
+        <h1>Vous êtes sur la liste des parties!</h1>
+
+        <p>Vous pouvez désormais créer une partie ou en rejoindre une !!</p>
+    </section>
+
+    <form action="/games" method="post">
+        <div class="popup">
+            <div class="close-btn">&times;</div>
+            <div class="form">
+                <h2>Créer une partie</h2>
+                <div class="form-element">
+                    <label for="NomPartie">Nom de la partie :</label>
+                    <input type="text" id="NomPartie" name="GameName" placeholder="Entrez le nom de la partie">
+                </div>
+                <div class="form-element">
+                    <label for="adversaire">Adversaire :</label>
+                    <select class="browsers" name="EnemieName">
+
+                    </select>
+                </div>
+                <div class="form-element">
+                    <button type="submit">Créer la partie</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <ul class="ul-listePartie">
+
+    </ul>
+
+
+</body>
+<script src="jeu.js"></script>
+<script src="ScriptTheme.js"></script>
+
+</html>
