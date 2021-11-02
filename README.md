@@ -46,7 +46,7 @@ Si le lot arrive sur l'emplacement d'un joueur, ce joueur remporte le lot (vainq
 --------------------------------------------------------------------------------
 
 <br><br><br><br>
-Grille de notation FRONT (sur 24 points): 14/24 	( y'a le theme sombre zebi)
+Grille de notation FRONT (sur 24 points): 15/24 	( y'a le theme sombre)
 --------------------------------------------------------------------------------
 
 Il y a un bouton "créer un compte" : 2 points					FAIT <br><br>
